@@ -1,5 +1,5 @@
 // Con process vemos los algumon de enttrada y salida
-//console.log(process.argv);
+// console.log(process.argv);
 
 // podemos controlar el proceso
 // process.on('exit', () => {
@@ -7,10 +7,9 @@
 // }
 // )
 
-
 // para ejecutar el archivo
 
-const esto = process.cwd(); // para saber en que directorio estamos
-console.log(esto);
+const esto = process.cwd() // para saber en que directorio estamos
+console.log(esto)
 
 console.log(process.env.PEPITO)
