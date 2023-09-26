@@ -1,0 +1,14 @@
+
+GET http://localhost:1234/pekemon/ditto
+
+### Para crear un pokemon
+POST http://localhost:1234/pekemon
+Content-Type: application/json
+
+{
+    "name": "ditto",
+    "type": "normal",
+    "moves": ["transform"]
+}
+
+### Aqui iniciamos la clase 3
