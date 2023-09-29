@@ -1,5 +1,6 @@
 // importamos el módulo express
 const express = require('express')
+const cors = require('cors')
 
 // crypto es un módulo nativo de node es para generar ids random
 const crypto = require('node:crypto')
@@ -17,6 +18,9 @@ app.disable('x-powered-by')
 // Para recibir Json en el body de un POST request
 app.use(express.json())
 
+// para mayor rapides con los cors podemos usar cors
+app.use(cors())
+
 // Declaramos el puerto donde escucha el servidor
 const port = process.env.PORT ?? 4321
 
@@ -31,40 +35,17 @@ app.get('/api', (req, res) => {
 })
 
 // Podemos tener origins Acepatados
-const ACCEPTED_ORIGINS = [
-  'http://localhost:8080',
-  'http://localhost:8081',
-  'http://localhost:8082',
-  'http://127.0.0.1:8080',
-  'http://localhost:1',
-  'http://sorido0.dev'
-]
+// const ACCEPTED_ORIGINS = [
+//   'http://localhost:8080',
+//   'http://localhost:8081',
+//   'http://localhost:8082',
+//   'http://127.0.0.1:8080',
+//   'http://localhost:1',
+//   'http://sorido0.dev'
+// ]
 
 // Para eliminar una pelicula
 app.delete('/movies/:id', (req, res) => {
-  // // recuoeramos el id de la pelicula
-  // const { id } = req.params
-
-  // // buscamos la pelicula por id
-  // const movieIndex = movies.findIndex(movie => movie.id === id)
-
-  // // si no existe la pelicula
-  // if (movieIndex === -1) {
-  //   console.log('poraqui')
-  //   return res.status(404).json(
-  //     {
-  //       message: 'Movie not found este'
-  //     }
-  //   )
-  // }
-
-  // // eliminamos la pelicula
-  // movies.splice(movieIndex, 1)
-
-  // // respondemos con la pelicula eliminada
-  // res.json({ message: 'Movie deleted' })
-  res.header('Access-Control-Allow-Origin', '*')
-
   const { id } = req.params
   const movieIndex = movies.findIndex(movie => movie.id === id)
 
@@ -83,14 +64,14 @@ app.get('/movies', (req, res) => {
   // El * significa que cualquier cliente puede hacer un request a nuestra api
   // Pero no es lo correcto en producción
 
-  // recuperamos el origin del request
-  const origin = req.header('Origin')
+  // // recuperamos el origin del request
+  // const origin = req.header('Origin')
 
-  // Si el origin no esta en la lista de aceptados
-  if (ACCEPTED_ORIGINS.includes(origin)) {
-    // respondemos con un error
-    res.header('Access-Control-Allow-Origin', `${origin}`)
-  }
+  // // Si el origin no esta en la lista de aceptados
+  // if (ACCEPTED_ORIGINS.includes(origin)) {
+  //   // respondemos con un error
+  //   res.header('Access-Control-Allow-Origin', `${origin}`)
+  // }
 
   const { genre } = req.query
 
@@ -178,21 +159,6 @@ app.patch('/movies/:id', (req, res) => {
 
   // respondemos con la pelicula actualizada
   res.json(updatedMovie)
-})
-
-app.options('/movies/:id', (req, res) => {
-  // recuperamos el origin del request
-  const origin = req.header('Origin')
-
-  // Si el origin no esta en la lista de aceptados
-  if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
-    // respondemos con un error
-    console.log(origin)
-    res.header('Access-Control-Allow-Origin', origin)
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
-  }
-
-  res.send()
 })
 
 app.listen(port, () => {

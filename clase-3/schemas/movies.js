@@ -15,11 +15,11 @@ const movieSchema = z.object({
 
 })
 
-function validarMovies(input) {
+function validarMovies (input) {
   return movieSchema.safeParse(input)
 }
 
-function validarPartialMovies(input) {
+function validarPartialMovies (input) {
   // Validamos que el objeto que nos pasan tenga al menos una propiedad
   return movieSchema.partial().safeParse(input)
 }

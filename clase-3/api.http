@@ -27,12 +27,12 @@ Content-Type: application/json
 
 
 ### Para actualizar una pelicula
-PATCH http://localhost:4321/movies/fbddfb5783446cedb3242cbaef8db978
+PATCH http://localhost:4321/movies/5ad1a235-0d9c-410a-b32b-220d91689a08
 Content-Type: application/json
 
 {
    
-    "director": "sorido0"
+    "year": 2023
     
    
 }
