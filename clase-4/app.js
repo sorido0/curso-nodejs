@@ -4,19 +4,6 @@ import express, { json } from 'express'
 import { moviesRoute } from './router/movies.js'
 import { corsMiddleware } from './middlewares/cors.js'
 
-// crypto es un módulo nativo de node es para generar ids random
-// import { randomBytes } from 'node:crypto'
-
-// Importamos fs
-// import fs from 'node:fs'
-
-// Importamos las peliculas
-// import movies from './movies.json'
-// import { validarPartialMovies } from './schemas/movies.js'
-
-// Como leer un JSON en ESmodules
-// const movies = JSON.parse(fs.readFileSync('./movies.json', 'utf-8'))
-
 // creamos la app
 const app = express()
 
